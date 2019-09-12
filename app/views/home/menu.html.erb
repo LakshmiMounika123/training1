@@ -1,0 +1,30 @@
+<h1> Menu </h1>
+
+<div class="btn-group">
+    <% @sections.each do |section| %>
+    <%= link_to section.name, menu_path(section_id: section.id), class: "btn btn-secondary #{'active' if params[:section_id] == section.id.to_s}" %>
+    <% end %>
+</div>
+
+<% if @current_section %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Name </th>
+                <th> Price </th>
+                <th> Image </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @current_section.food_items.each do |item| %>
+                <tr>
+                    <td><%= item.name %> </td>
+                    <td><%= item.price %> </td>
+                    <td><%= image_tag item.image_url_or_default %> </td>
+                </tr>
+                <% end %>
+        </tbody>
+    </table>
+    <% else %>
+    <div class="alert alert-info"> Please Select a section </div>
+<% end %>

@@ -1,0 +1,2 @@
+class SectionName < ApplicationRecord
+end
